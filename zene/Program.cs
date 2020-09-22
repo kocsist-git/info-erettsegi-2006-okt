@@ -19,6 +19,22 @@ namespace zene
         static void Main(string[] args)
         {
             task1();
+            task2();
+        }
+
+        private static void task2()
+        {
+            int[] csati = new int[3];
+            Console.WriteLine("Második feladat:");
+            foreach (var item in musor)
+            {
+                csati[item.radioSorszam - 1]++;
+            }
+
+            for (int i = 0; i < csati.GetLength(0); i++)
+            {
+                Console.WriteLine("A/Az {0} cstornán: " + csati[i] + " számot lehetett meghalgatni", i+1);
+            }
         }
 
         private static void task1()
