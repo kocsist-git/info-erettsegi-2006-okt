@@ -20,6 +20,21 @@ namespace zene
         {
             task1();
             task2();
+            task3();
+        }
+
+        private static void task3()
+        {
+            TimeSpan mennyiIdoTeltEl = new TimeSpan();
+            for (int i = 0; i < musor.Count; i++)
+            {
+                if (musor[i].szamEloado=="Eric Clapton" && musor[i].radioSorszam==1)
+                {
+                    
+                    mennyiIdoTeltEl += musor[i].szamhossza;
+                }
+            }
+            Console.WriteLine("3.Feladat\nEnnyi idő telt ez az első Eric Clapton kezdete és az utolsó vége között az 1. adón: " + mennyiIdoTeltEl);
         }
 
         private static void task2()
@@ -52,7 +67,7 @@ namespace zene
                 string szAzon="";
                 for (int i = 3; i < temp.GetLength(0); i++)
                 {
-                    szAzon += temp[i];
+                    szAzon += temp[i] + " ";
                 }
                 string[] temp2 = szAzon.Split(":");
                 a.szamEloado = temp2[0];
