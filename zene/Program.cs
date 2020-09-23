@@ -30,7 +30,40 @@ namespace zene
 
         private static void task6()
         {
-           
+            TimeSpan ujMusorIdo = new TimeSpan();
+            TimeSpan egesz = new TimeSpan(01,00,00);
+            TimeSpan egeszfix = new TimeSpan(01,00,00);
+            TimeSpan bevezeto = new TimeSpan(00,01,00);
+            TimeSpan hirek = new TimeSpan(00,03,00);
+            List<TimeSpan> radio1 = new List<TimeSpan>();
+            foreach (var item in musor)
+            {
+                if(item.radioSorszam==1)
+                {
+                    radio1.Add(item.szamhossza);
+                    
+                }
+            }
+            for (int i = 0; i < radio1.Count; i++)
+            {
+                ujMusorIdo += bevezeto + radio1[i];
+                try
+                {
+                    if (ujMusorIdo + bevezeto + radio1[i + 1] >= egesz)
+                    {
+                        ujMusorIdo += egesz - ujMusorIdo; // musorvezeto
+                        ujMusorIdo += hirek;
+                        egesz += egeszfix;
+                    }
+                }
+                catch
+                {
+
+                }
+                //Console.WriteLine(ujMusorIdo);
+                //Console.ReadKey();
+            }
+            Console.WriteLine("6.Feladat\nAz uj műsoridő: " + ujMusorIdo);
         }
 
         private static void task5()
