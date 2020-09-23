@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 namespace zene
@@ -21,16 +22,84 @@ namespace zene
             task1();
             task2();
             task3();
+            task4();
+            task5();
+
+        }
+
+        private static void task5()
+        {
+           
+        }
+
+        private static void task4()
+        {
+
+            TimeSpan mennyiIdoTeltEl = new TimeSpan();
+            int ezenAcsatinSzol = 0;
+            for (int i = 0; i < musor.Count; i++)
+            {
+                if (musor[i].szamEloado == "Omega" && musor[i].szamZeneszam == "Legenda")
+                {
+                    Console.WriteLine("4.Feladat\nAz Omega:Legenda a " + musor[i].radioSorszam + ". csatornán hallható");
+                    ezenAcsatinSzol = musor[i].radioSorszam;
+                    break;
+                }
+            }
+            for (int i = 0; i < musor.Count; i++)
+            {
+                if (musor[i].radioSorszam == ezenAcsatinSzol) mennyiIdoTeltEl += musor[i].szamhossza;
+            }
+
+            TimeSpan[] csati = new TimeSpan[3];
+            for (int i = 1; i <=3; i++)
+            {
+                if (i!= ezenAcsatinSzol)
+                {
+                    foreach (var item in musor)
+                    {
+                        if (item.radioSorszam == i)
+                        {
+                            csati[i] += item.szamhossza;
+                            if(csati[i]>= mennyiIdoTeltEl) 
+                            {
+                                Console.WriteLine("A(z)" + i + ". csatornán: " + item.szamEloado + ":" + item.szamZeneszam + " szól éppen.");
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                
+            }
         }
 
         private static void task3()
         {
             TimeSpan mennyiIdoTeltEl = new TimeSpan();
+
+            int elso = 0;
+            int utolso = 0;
             for (int i = 0; i < musor.Count; i++)
             {
                 if (musor[i].szamEloado=="Eric Clapton" && musor[i].radioSorszam==1)
                 {
-                    
+                    elso = i;
+                    break;
+                }
+            }
+            for (int i = musor.Count-1; i > elso; i--)
+            {
+                if (musor[i].szamEloado == "Eric Clapton" && musor[i].radioSorszam == 1)
+                {
+                    utolso = i;
+                    break;
+                }
+            }
+            for (int i = elso; i <= utolso; i++)
+            {
+                if (musor[i].radioSorszam == 1)
+                {
                     mennyiIdoTeltEl += musor[i].szamhossza;
                 }
             }
@@ -68,7 +137,9 @@ namespace zene
                 for (int i = 3; i < temp.GetLength(0); i++)
                 {
                     szAzon += temp[i] + " ";
+
                 }
+                szAzon = szAzon.Trim();
                 string[] temp2 = szAzon.Split(":");
                 a.szamEloado = temp2[0];
                 a.szamZeneszam = temp2[1];
