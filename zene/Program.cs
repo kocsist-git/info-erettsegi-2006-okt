@@ -24,12 +24,48 @@ namespace zene
             task3();
             task4();
             task5();
+            task6();
 
+        }
+
+        private static void task6()
+        {
+           
         }
 
         private static void task5()
         {
-           
+            Console.WriteLine("5.Feladat\nAdd meg amit tudsz: ");
+            string keres = Console.ReadLine();
+            List<string> talalatok = new List<string>();
+            keres = keres.ToLower();
+            for (int j = 0; j < musor.Count; j++)
+            {
+                string zene = musor[j].szamEloado + ":" + musor[j].szamZeneszam;
+                zene = zene.ToLower();
+                int aktualis = 0;
+                for (int i = 0; i < zene.Length; i++)
+                {
+                    if (keres[aktualis] == zene[i])
+                    {
+                        aktualis++; 
+                    }
+                    if(aktualis>=keres.Length)
+                    {
+                        talalatok.Add(zene);
+                        break;
+                    }
+                }
+            }
+
+            StreamWriter sw = new StreamWriter("keres.txt");
+            sw.WriteLine(keres);
+            foreach (var item in talalatok)
+            {
+                sw.WriteLine(item);
+            }
+            sw.Flush();
+            sw.Close();
         }
 
         private static void task4()
